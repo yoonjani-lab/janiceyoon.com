@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listening Clock — Janice Yoon</title>
+  <meta name="description" content="A clock that tells time through the music you choose.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="top">
+    <p class="kicker">A1 · Make a Clock</p>
+    <h1>Listening <em>Clock</em></h1>
+    <p class="lede">Time, scored to the song you pick. The hour chooses a station; you can override it anytime.</p>
+  </header>
+
+  <main class="stage">
+    <section class="clock-column" aria-label="Clock">
+      <div class="vinyl-wrap" id="vinylWrap">
+        <div class="vinyl" id="vinyl" aria-hidden="true">
+          <div class="groove"></div>
+          <div class="groove g2"></div>
+          <div class="groove g3"></div>
+          <div class="label" id="recordLabel">
+            <span class="label-station" id="labelStation">Bloom</span>
+            <span class="label-time" id="labelTime">00:00</span>
+          </div>
+        </div>
+
+        <svg class="hands" viewBox="0 0 200 200" role="img" aria-labelledby="clockTitle clockDesc">
+          <title id="clockTitle">Analog clock</title>
+          <desc id="clockDesc">Live analog clock with hour, minute, and second hands.</desc>
+          <g class="ticks" id="ticks"></g>
+          <line id="hourHand" class="hand hour" x1="100" y1="100" x2="100" y2="58" />
+          <line id="minuteHand" class="hand minute" x1="100" y1="100" x2="100" y2="42" />
+          <line id="secondHand" class="hand second" x1="100" y1="112" x2="100" y2="28" />
+          <circle class="cap" cx="100" cy="100" r="5" />
+        </svg>
+
+        <div class="arm" id="arm" aria-hidden="true"></div>
+      </div>
+
+      <p class="digital" id="digital">Tuesday · 00:00:00</p>
+      <p class="key-line" id="keyLine">Key of C · 76 BPM</p>
+    </section>
+
+    <section class="panel" aria-label="Music choices">
+      <div class="now">
+        <p class="now-kicker">Now playing</p>
+        <h2 id="trackName">Morning Garden</h2>
+        <p class="now-mood" id="trackMood">Petals opening. Soft guitar of a slow morning.</p>
+        <p class="now-why" id="trackWhy"></p>
+      </div>
+
+      <div class="controls">
+        <button type="button" class="play" id="playBtn" aria-pressed="false">
+          <span class="play-icon" id="playIcon">Listen</span>
+        </button>
+        <label class="follow">
+          <input type="checkbox" id="followHour" checked>
+          Follow the hour
+        </label>
+        <label class="vol">
+          Volume
+          <input type="range" id="volume" min="0" max="1" step="0.01" value="0.55">
+        </label>
+      </div>
+
+      <p class="choose">Choose a station</p>
+      <div class="stations" id="stations" role="listbox" aria-label="Music stations"></div>
+
+      <p class="hint">Keys 1–6 pick a station · space plays or pauses. The musical key shifts with the hour, so midnight and noon never sound the same.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Janice Yoon · DES 303 · A clock only I would make: time you can hear.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

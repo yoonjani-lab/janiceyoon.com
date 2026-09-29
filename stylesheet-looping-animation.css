@@ -1,0 +1,24 @@
+html,body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	overflow: hidden;
+}
+.shape {
+	width: 20vw; 
+	aspect-ratio: 1/1;
+	background-color: red;
+}
+@keyframes chnageShape {
+	0% {
+		transform: rotate(0deg);
+		border-radius: 0%;
+		box-shadow: 0px 0px 0px rgba(0, 0, 0, 1.0);
+	}
+	100% {
+		transform: rotate(360deg);
+		border-radius: 50%;
+		box-shadow: 30px 30px 30px rgba(0, 0, 0, 1.0);
+	}
+}
+

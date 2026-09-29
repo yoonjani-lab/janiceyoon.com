@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Living Background — Janice Yoon</title>
+	<meta name="description" content="A public, customizable motion background. Change the place, weather, light, and pace, then share a link to your setup.">
+	<meta property="og:title" content="Living Background — Janice Yoon">
+	<meta property="og:description" content="A customizable motion background. Change the place, weather, light, and pace.">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body data-scene="cafe">
+	<div id="back" aria-hidden="true"></div>
+	<canvas id="weather" aria-hidden="true"></canvas>
+	<div class="lamp-glow" aria-hidden="true"></div>
+	<div id="front" aria-hidden="true"></div>
+	<div class="grain" aria-hidden="true"></div>
+
+	<div class="hero-clock">
+		<div class="clock-stack">
+		<div class="clock-face" id="clock-face" role="img" aria-label="Current time">
+			<div class="note-field" id="note-field" aria-hidden="true"></div>
+			<span class="num major" style="--a: 0deg">12</span>
+			<span class="num" style="--a: 30deg">1</span>
+			<span class="num" style="--a: 60deg">2</span>
+			<span class="num" style="--a: 90deg">3</span>
+			<span class="num" style="--a: 120deg">4</span>
+			<span class="num" style="--a: 150deg">5</span>
+			<span class="num major" style="--a: 180deg">6</span>
+			<span class="num" style="--a: 210deg">7</span>
+			<span class="num" style="--a: 240deg">8</span>
+			<span class="num" style="--a: 270deg">9</span>
+			<span class="num" style="--a: 300deg">10</span>
+			<span class="num" style="--a: 330deg">11</span>
+			<div class="hand-pivot hour" id="hour-hand"><span class="blade"></span></div>
+			<div class="hand-pivot minute" id="minute-hand"><span class="blade"></span></div>
+			<div class="hand-pivot second" id="second-hand"><span class="blade"></span><span class="tail"></span></div>
+			<div class="clock-hub"></div>
+		</div>
+		<p class="digital-time" id="digital-time"><span id="digital-digits">12:00:00</span> <span class="digital-period" id="digital-period">AM</span></p>
+		<div class="music-controls" id="music-controls">
+			<p class="song-name" id="song-name">Rain Cafe</p>
+			<button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false">Play</button>
+			<label class="volume-label">
+				<span>Volume <em id="volume-val">70</em></span>
+				<input id="theme-volume" type="range" min="0" max="100" value="70" aria-label="Theme volume">
+			</label>
+		</div>
+		</div>
+	</div>
+
+	<button type="button" id="toggle" class="toggle">Customize</button>
+	<button type="button" id="focus-exit" class="focus-exit">Show controls</button>
+
+	<aside class="panel" id="panel" aria-label="Customize the background">
+		<div class="panel-head">
+			<h1>Living background</h1>
+			<p>Pick a place, then tune the weather, light, and pace. Your setup is saved in this browser.</p>
+		</div>
+
+		<fieldset>
+			<legend>Place</legend>
+			<div class="scenes">
+				<button type="button" class="scene-btn" data-scene="cafe" aria-pressed="true"><span>Rain Cafe</span></button>
+				<button type="button" class="scene-btn" data-scene="market" aria-pressed="false"><span>Night Market</span></button>
+				<button type="button" class="scene-btn" data-scene="snow" aria-pressed="false"><span>Snow Garden</span></button>
+				<button type="button" class="scene-btn" data-scene="studio" aria-pressed="false"><span>Day Studio</span></button>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Accent</legend>
+			<div class="swatches" id="swatches"></div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Clock</legend>
+			<div class="swatches" id="clock-swatches"></div>
+		</fieldset>
+
+		<label class="slider">
+			<span>Weather <em id="weather-label">Rain</em></span>
+			<select id="weather-kind">
+				<option value="auto">Match the place</option>
+				<option value="rain">Rain</option>
+				<option value="snow">Snow</option>
+				<option value="petals">Petals</option>
+				<option value="fireflies">Fireflies</option>
+				<option value="clear">Clear</option>
+			</select>
+		</label>
+
+		<label class="slider">
+			<span>Amount <em id="density-val">62</em></span>
+			<input id="density" type="range" min="0" max="100" value="62">
+		</label>
+
+		<label class="slider">
+			<span>Pace <em id="speed-val">1.0×</em></span>
+			<input id="speed" type="range" min="40" max="180" value="100">
+		</label>
+
+		<label class="slider">
+			<span>Light <em id="light-val">72</em></span>
+			<input id="light" type="range" min="15" max="100" value="72">
+		</label>
+
+		<div class="actions">
+			<button type="button" id="focus">Focus</button>
+		</div>
+	</aside>
+
+	<script src="app.js?v=3"></script>
+</body>
+</html>
