@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Exercise 3 — The Atomic Age</title>
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css?v=45">
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .atomic {
+      --mint: #9FD4B2;
+      --coral: #E8857A;
+      --butter: #F0D070;
+      --powder: #8ABCD1;
+      --char: #484848;
+      --parch: #F5EDD8;
+      --bg: var(--parch);
+      --ink: var(--char);
+      --card: #fff8e8;
+      background: var(--bg);
+      color: var(--ink);
+      font: 400 18px/1.6 "Josefin Sans", Futura, "Trebuchet MS", sans-serif;
+      overflow-x: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .atomic {
+        --bg: #3a3a3a;
+        --ink: #F5EDD8;
+        --card: #484848;
+      }
+    }
+
+    .atomic .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+
+    .atomic .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 56px 0 24px;
+      margin: 0;
+      min-height: 0;
+    }
+
+    .atomic h1 {
+      font: 400 clamp(52px, 10vw, 112px) / 0.92 "Bowlby One", Impact, sans-serif;
+      margin: 0;
+      color: var(--coral);
+      text-shadow: 5px 5px 0 var(--butter);
+      text-align: left;
+    }
+
+    .atomic .hero p {
+      max-width: 34ch;
+      font-size: 21px;
+      margin: 22px 0 0;
+      line-height: 1.6;
+      color: var(--ink);
+      font-family: "Josefin Sans", Futura, "Trebuchet MS", sans-serif;
+    }
+
+    .atomic .burst {
+      position: relative;
+      width: min(380px, 80vw);
+      aspect-ratio: 1;
+      margin: auto;
+      animation: atomic-spin 48s linear infinite;
+    }
+
+    .atomic .ray {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 34px;
+      height: 50%;
+      margin-left: -17px;
+      transform-origin: 50% 100%;
+      transform: rotate(calc(var(--i) * 30deg));
+    }
+
+    .atomic .ray::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--coral);
+      clip-path: polygon(50% 0, 100% 80%, 50% 100%, 0 80%);
+      animation: atomic-pulse 3.6s ease-in-out infinite;
+      animation-delay: calc(var(--i) * -0.3s);
+      transform-origin: 50% 100%;
+    }
+
+    .atomic .ray:nth-child(even)::before {
+      background: var(--butter);
+      height: 72%;
+      top: 28%;
+    }
+
+    .atomic .core {
+      position: absolute;
+      inset: 36%;
+      border-radius: 50%;
+      background: var(--mint);
+      border: 8px solid var(--char);
+    }
+
+    .atomic .wave {
+      display: flex;
+      justify-content: space-between;
+      padding: 56px 0;
+    }
+
+    .atomic .leaf {
+      width: 5.2%;
+      aspect-ratio: 1.8;
+      border-radius: 0 100% 0 100%;
+      transform: rotate(-12deg);
+      animation: atomic-bob 2.4s ease-in-out infinite;
+      animation-delay: calc(var(--i) * -0.17s);
+    }
+
+    .atomic .leaf:nth-child(4n+1) { background: var(--mint); }
+    .atomic .leaf:nth-child(4n+2) { background: var(--coral); }
+    .atomic .leaf:nth-child(4n+3) { background: var(--butter); }
+    .atomic .leaf:nth-child(4n) { background: var(--powder); }
+
+    .atomic h2 {
+      font: 400 clamp(30px, 5vw, 46px) / 1.05 "Bowlby One", Impact, sans-serif;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+
+    .atomic .pal {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 20px;
+    }
+
+    .atomic .sw {
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .atomic .sw i {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 4px solid var(--char);
+      animation: atomic-pop 5s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 0.4s);
+    }
+
+    .atomic .sw b {
+      display: block;
+      font-weight: 600;
+    }
+
+    .atomic .why {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      padding: 72px 0 40px;
+    }
+
+    .atomic .why p {
+      margin: 0 0 16px;
+      max-width: 60ch;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--ink);
+      font-family: "Josefin Sans", Futura, "Trebuchet MS", sans-serif;
+    }
+
+    .atomic .take {
+      background: var(--card);
+      border: 4px solid var(--char);
+      border-radius: 28px 0 28px 0;
+      padding: 24px 28px;
+      align-self: start;
+    }
+
+    .atomic .take h3 {
+      font: 400 24px "Bowlby One", Impact, sans-serif;
+      margin: 0 0 12px;
+      color: var(--coral);
+    }
+
+    .atomic .take p {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .atomic footer {
+      padding: 24px 0 48px;
+      font-size: 15px;
+    }
+
+    @keyframes atomic-spin { to { transform: rotate(360deg); } }
+    @keyframes atomic-pulse { 50% { transform: scaleY(0.8); } }
+    @keyframes atomic-bob { 50% { transform: translateY(-22px) rotate(8deg); } }
+    @keyframes atomic-pop { 50% { transform: scale(1.07); } }
+
+    @media (max-width: 720px) {
+      .atomic .hero,
+      .atomic .why { grid-template-columns: 1fr; }
+      .atomic .hero { padding-top: 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .atomic *,
+      .atomic *::before { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="site-header">
+      <div class="header-side header-left"></div>
+      <h1><a href="../index.html"><img src="../img/janice-yoon.png" alt="Janice Yoon"></a></h1>
+      <div class="header-side header-right"></div>
+    </div>
+    <div class="announce">
+      <a href="my-background.html">My Background</a>
+      <a href="design-inspiration.html">Design Inspiration</a>
+      <a href="everyday-object.html">Everyday Object</a>
+      <a href="exercise-3.html">Exercise 3</a>
+    </div>
+  </header>
+
+  <main class="atomic">
+    <div class="wrap">
+      <section class="hero">
+        <div>
+          <h1>The Atomic Age</h1>
+          <p>1950–1959. Mid-century modern, when postwar optimism turned the suburbs into a color laboratory.</p>
+        </div>
+        <div class="burst" aria-hidden="true">
+          <div class="ray" style="--i:0"></div><div class="ray" style="--i:1"></div><div class="ray" style="--i:2"></div>
+          <div class="ray" style="--i:3"></div><div class="ray" style="--i:4"></div><div class="ray" style="--i:5"></div>
+          <div class="ray" style="--i:6"></div><div class="ray" style="--i:7"></div><div class="ray" style="--i:8"></div>
+          <div class="ray" style="--i:9"></div><div class="ray" style="--i:10"></div><div class="ray" style="--i:11"></div>
+          <div class="core"></div>
+        </div>
+      </section>
+
+      <div class="wave" aria-hidden="true">
+        <div class="leaf" style="--i:0"></div><div class="leaf" style="--i:1"></div><div class="leaf" style="--i:2"></div>
+        <div class="leaf" style="--i:3"></div><div class="leaf" style="--i:4"></div><div class="leaf" style="--i:5"></div>
+        <div class="leaf" style="--i:6"></div><div class="leaf" style="--i:7"></div><div class="leaf" style="--i:8"></div>
+        <div class="leaf" style="--i:9"></div><div class="leaf" style="--i:10"></div><div class="leaf" style="--i:11"></div>
+        <div class="leaf" style="--i:12"></div><div class="leaf" style="--i:13"></div>
+      </div>
+
+      <section>
+        <h2>The suburban palette</h2>
+        <div class="pal">
+          <div class="sw" style="--i:0"><i style="background:var(--mint)"></i><b>Mint Mist</b>#9FD4B2</div>
+          <div class="sw" style="--i:1"><i style="background:var(--coral)"></i><b>Coral Blush</b>#E8857A</div>
+          <div class="sw" style="--i:2"><i style="background:var(--butter)"></i><b>Butter Yellow</b>#F0D070</div>
+          <div class="sw" style="--i:3"><i style="background:var(--powder)"></i><b>Powder Blue</b>#8ABCD1</div>
+          <div class="sw" style="--i:4"><i style="background:var(--char)"></i><b>Charcoal</b>#484848</div>
+          <div class="sw" style="--i:5"><i style="background:var(--parch)"></i><b>Parchment</b>#F5EDD8</div>
+        </div>
+      </section>
+
+      <section class="why">
+        <div>
+          <h2>Design choices</h2>
+          <p><b>Color:</b> I used the 1950s appliance, diner and car pastels (mint, coral, butter yellow, powder blue) on a warm parchment ground, with charcoal for outlines and text so the soft colors stay readable. <b>Shape:</b> the starburst and boomerang leaf are the decade's signature motifs from clocks, lamps and barware, built from simple geometry. <b>Scale:</b> one oversized burst and a heavy headline lead the page, while the small leaves and swatches stay quiet. <b>Repetition and rhythm:</b> twelve rays and fourteen leaves repeat in a steady cycle, and the leaves cycle through four colors, much like a terrazzo floor or a jukebox row. <b>Movement and timing:</b> the burst turns slowly (48 seconds) like a wall clock, its rays pulse in staggered delays, and the leaves bob in a 2.4 second wave, bouncy but never frantic, matching the decade's cheerful optimism.</p>
+        </div>
+        <aside class="take">
+          <h3>Main takeaways</h3>
+          <p><b>HTML</b> creates the repeated shapes.</p>
+          <p><b>CSS</b> creates their appearance.</p>
+          <p><b>@keyframes</b> creates the movement.</p>
+        </aside>
+      </section>
+
+      <footer>Design 303 · Palette and history from the 1950s Atomic Age brief.</footer>
+    </div>
+  </main>
+</body>
+</html>
